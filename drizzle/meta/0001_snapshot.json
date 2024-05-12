@@ -1,6 +1,6 @@
 {
-  "id": "69716df0-7098-4064-8b9f-c86b35ef6859",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "277375b9-e77b-4f13-971e-f56787ebd027",
+  "prevId": "69716df0-7098-4064-8b9f-c86b35ef6859",
   "version": "6",
   "dialect": "postgresql",
   "tables": {
@@ -31,28 +31,6 @@
           "type": "text",
           "primaryKey": false,
           "notNull": true
-        }
-      },
-      "indexes": {},
-      "foreignKeys": {},
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
-    },
-    "public.update": {
-      "name": "update",
-      "schema": "",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "text",
-          "primaryKey": true,
-          "notNull": true
-        },
-        "name": {
-          "name": "name",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
         }
       },
       "indexes": {},
