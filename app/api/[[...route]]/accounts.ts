@@ -38,7 +38,7 @@ const app = new Hono()
       const auth = getAuth(c);
       const values = c.req.valid('json');
       if (!auth?.userId) {
-        return c.json({ error: 'Unathorised' }, 401);
+        return c.json({ error: 'Unauthorised' }, 401);
       }
       const [data] = await db //drizzle will always return an array. so we destructure using [data] so it will always return the first item in the array.
         .insert(accounts)

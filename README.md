@@ -38,3 +38,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 ##install zod-validaor and zod
 npm i @hono/zod-validator
 npm i zod
+
+##POINTS TO RAISE
+WHY REACT QUERY?
+WE CAN CREATE ACCOUNTS WITH THE SAME NAME.
