@@ -4,6 +4,7 @@ import accounts from './accounts';
 
 export const runtime = 'edge';
 
+//will overwrite next js file based writing to use Hono.
 const app = new Hono().basePath('/api');
 
 const routes = app.route('/accounts', accounts);
