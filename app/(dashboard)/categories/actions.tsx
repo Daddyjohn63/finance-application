@@ -1,5 +1,5 @@
 'use client';
-import { useOpenAccount } from '@/features/accounts/hooks/use-open-account';
+import { useOpenCategory } from '@/features/categories/hooks/use-open-category';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -9,7 +9,7 @@ import {
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
 import { Edit, MoreHorizontal, Trash } from 'lucide-react';
-import { useDeleteAccount } from '@/features/accounts/api/use-delete-account';
+import { useDeleteCategory } from '@/features/categories/api/use-delete-category';
 import { useConfirm } from '@/hooks/use-confirm';
 
 type Props = {
@@ -20,10 +20,10 @@ export const Actions = ({ id }: Props) => {
   // console.log('actions', id);
   const [ConfirmDialog, confirm] = useConfirm(
     'Are your sure?',
-    'You are about to delete this account.'
+    'You are about to delete this category.'
   );
-  const deleteMutation = useDeleteAccount(id);
-  const { onOpen } = useOpenAccount();
+  const deleteMutation = useDeleteCategory(id);
+  const { onOpen } = useOpenCategory();
 
   const handleDelete = async () => {
     const ok = await confirm();

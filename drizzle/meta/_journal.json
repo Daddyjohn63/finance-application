@@ -15,6 +15,13 @@
       "when": 1715505100786,
       "tag": "0001_massive_slayback",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1716796874987,
+      "tag": "0002_first_ezekiel",
+      "breakpoints": true
     }
   ]
 }
