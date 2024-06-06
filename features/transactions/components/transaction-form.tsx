@@ -9,8 +9,8 @@ import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { DatePicker } from '@/components/date-picker';
 import { insertTransactionSchema } from '@/db/schema';
-//import { convertAmountToMiliunits } from "@/lib/utils";
-//import { AmountInput } from "@/components/amount-input";
+import { convertAmountToMiliunits } from '@/lib/utils';
+import { AmountInput } from '@/components/amount-input';
 import {
   Form,
   FormControl,
@@ -65,13 +65,14 @@ export const TransactionForm = ({
   });
 
   const handleSubmit = (values: FormValues) => {
-    console.log({ values });
-    //const amountInMiliunits = convertAmountToMiliunits(amount);
+    // console.log({ values });
+    const amount = parseFloat(values.amount);
+    const amountInMiliunits = convertAmountToMiliunits(amount);
 
-    // onSubmit({
-    //   ...values
-    //   amount: amountInMiliunits,
-    // });
+    onSubmit({
+      ...values,
+      amount: amountInMiliunits
+    });
   };
 
   const handleDelete = () => {
@@ -153,11 +154,7 @@ export const TransactionForm = ({
             <FormItem>
               <FormLabel>Amount</FormLabel>
               <FormControl>
-                {/* <AmountInput
-                  {...field}
-                  disabled={disabled}
-                  placeholder="0.00"
-                /> */}
+                <AmountInput {...field} disabled={disabled} placeholder="0.00" />
               </FormControl>
             </FormItem>
           )}
