@@ -1,6 +1,6 @@
 import { z } from 'zod';
-import { useGetTransaction } from '@/features/transactions/api/use-get-transaction'; //
-import { useOpenTransaction } from '@/features/transactions/hooks/use-open-transaction'; //
+import { useGetTransaction } from '@/features/transactions/api/use-get-transaction';
+import { useOpenTransaction } from '@/features/transactions/hooks/use-open-transaction';
 import { useEditTransaction } from '@/features/transactions/api/use-edit-transaction';
 import { useDeleteTransaction } from '@/features/transactions/api/use-delete-transaction';
 import { TransactionForm } from '@/features/transactions/components/transaction-form';
@@ -27,9 +27,6 @@ import { Loader2 } from 'lucide-react';
 const formSchema = insertTransactionSchema.omit({
   id: true
 });
-// const formSchema = insertTransactionSchema.pick({
-//   name: true
-// });
 
 type FormValues = z.input<typeof formSchema>;
 
