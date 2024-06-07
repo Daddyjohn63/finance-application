@@ -34,7 +34,6 @@ export const NewTransactionSheet = () => {
   // const createMutation = useCreateTransaction();
   const categoryMutation = useCreateCategory();
   const categoryQuery = useGetCategories();
-
   const onCreateCategory = (name: string) =>
     categoryMutation.mutate({
       name
