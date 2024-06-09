@@ -1,4 +1,5 @@
-import { create } from "zustand";
+//checked with ants
+import { create } from 'zustand';
 
 type OpenTransactionState = {
   id?: string;
@@ -7,9 +8,9 @@ type OpenTransactionState = {
   onClose: () => void;
 };
 
-export const useOpenTransaction = create<OpenTransactionState>((set) => ({
+export const useOpenTransaction = create<OpenTransactionState>(set => ({
   id: undefined,
   isOpen: false,
   onOpen: (id: string) => set({ isOpen: true, id }),
-  onClose: () => set({ isOpen: false, id: undefined }),
+  onClose: () => set({ isOpen: false, id: undefined })
 }));

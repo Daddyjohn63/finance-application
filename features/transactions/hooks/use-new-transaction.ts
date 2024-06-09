@@ -1,4 +1,5 @@
-import { create } from "zustand";
+//checked with ants
+import { create } from 'zustand';
 
 type NewTransactionState = {
   isOpen: boolean;
@@ -6,8 +7,8 @@ type NewTransactionState = {
   onClose: () => void;
 };
 
-export const useNewTransaction = create<NewTransactionState>((set) => ({
+export const useNewTransaction = create<NewTransactionState>(set => ({
   isOpen: false,
   onOpen: () => set({ isOpen: true }),
-  onClose: () => set({ isOpen: false }),
+  onClose: () => set({ isOpen: false })
 }));

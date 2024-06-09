@@ -1,3 +1,4 @@
+//checked with ants
 import { z } from 'zod';
 import { Loader2 } from 'lucide-react';
 
@@ -31,9 +32,9 @@ export const NewTransactionSheet = () => {
 
   const createMutation = useCreateTransaction();
 
-  // const createMutation = useCreateTransaction();
-  const categoryMutation = useCreateCategory();
   const categoryQuery = useGetCategories();
+  const categoryMutation = useCreateCategory();
+
   const onCreateCategory = (name: string) =>
     categoryMutation.mutate({
       name
