@@ -38,6 +38,7 @@ export const EditTransactionSheet = () => {
   );
 
   const transactionQuery = useGetTransaction(id);
+  console.log('TRANSACTION QUERY', transactionQuery.data);
   const editMutation = useEditTransaction(id);
   const deleteMutation = useDeleteTransaction(id);
 
@@ -65,9 +66,15 @@ export const EditTransactionSheet = () => {
     value: account.id
   }));
 
-  const isPending = editMutation.isPending || deleteMutation.isPending;
+  const isPending =
+    editMutation.isPending ||
+    deleteMutation.isPending ||
+    transactionQuery.isLoading ||
+    categoryMutation.isPending ||
+    accountMutation.isPending;
 
-  const isLoading = transactionQuery.isLoading;
+  const isLoading =
+    transactionQuery.isLoading || categoryQuery.isLoading || accountQuery.isLoading;
 
   const onSubmit = (values: FormValues) => {
     editMutation.mutate(values, {
@@ -127,11 +134,6 @@ export const EditTransactionSheet = () => {
             </div>
           ) : (
             <TransactionForm
-              // id={id}
-              // defaultValues={defaultValues}
-              // onSubmit={onSubmit}
-              // disabled={isPending}
-              //onDelete={onDelete}
               id={id}
               defaultValues={defaultValues}
               onSubmit={onSubmit}

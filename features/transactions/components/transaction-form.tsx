@@ -70,6 +70,7 @@ export const TransactionForm = ({
     const amount = parseFloat(values.amount);
     const amountInMiliunits = convertAmountToMiliunits(amount);
 
+    // ***********
     onSubmit({
       ...values,
       amount: amountInMiliunits
