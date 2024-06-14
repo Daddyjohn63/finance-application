@@ -28,8 +28,8 @@ const TransactionsPage = () => {
   const [importResults, setImportResults] = useState(INITIAL_IMPORT_RESULTS);
 
   const onUpload = (results: typeof INITIAL_IMPORT_RESULTS) => {
-    console.log(results);
-    setImportResults(results);
+    // console.log(results);
+    setImportResults(results); //setresults to the data brought in via papaparse csv reader in upload-button component.
     setVariant(VARIANTS.IMPORT);
   };
 
