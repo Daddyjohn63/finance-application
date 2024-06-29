@@ -1,19 +1,17 @@
+//ants
 import { useState } from 'react';
 import { format, parse } from 'date-fns';
+
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-
 import { convertAmountToMiliunits } from '@/lib/utils';
+
 import { ImportTable } from './import-table';
 
-//import { ImportTable } from './import-table';
+const dateFormat = 'yyyy-MM-dd HH:mm:ss';
+const outputFormat = 'yyyy-MM-dd';
 
-//required formats
-//const dateFormat = 'yyyy-MM-dd HH:mm:ss'; //what we need to get from the csv file
-const dateFormat = 'dd/MM/yyyy HH:mm';
-const outputFormat = 'yyyy-MM-dd'; //what our db expects.
-
-const requiredOptions = ['amount', 'date', 'payee']; //needed/required to make a transaction
+const requiredOptions = ['amount', 'date', 'payee'];
 
 interface SelectedColumnsState {
   [key: string]: string | null;
@@ -28,8 +26,8 @@ type Props = {
 export const ImportCard = ({ data, onCancel, onSubmit }: Props) => {
   const [selectedColumns, setSelectedColumns] = useState<SelectedColumnsState>({});
 
-  const headers = data[0]; //first array is the header labels
-  const body = data.slice(1); //now the transaction data
+  const headers = data[0];
+  const body = data.slice(1);
 
   const onTableHeadSelectChange = (columnIndex: number, value: string | null) => {
     setSelectedColumns(prev => {
@@ -40,9 +38,11 @@ export const ImportCard = ({ data, onCancel, onSubmit }: Props) => {
           newSelectedColumns[key] = null;
         }
       }
+
       if (value === 'skip') {
         value = null;
       }
+
       newSelectedColumns[`column_${columnIndex}`] = value;
       return newSelectedColumns;
     });
@@ -66,29 +66,29 @@ export const ImportCard = ({ data, onCancel, onSubmit }: Props) => {
             const columnIndex = getColumnIndex(`column_${index}`);
             return selectedColumns[`column_${columnIndex}`] ? cell : null;
           });
-          //check
+
           return transformedRow.every(item => item === null) ? [] : transformedRow;
         })
         .filter(row => row.length > 0)
     };
 
-    //console.log({ mappedData });
     const arrayOfData = mappedData.body.map(row => {
       return row.reduce((acc: any, cell, index) => {
         const header = mappedData.headers[index];
         if (header !== null) {
           acc[header] = cell;
         }
+
         return acc;
       }, {});
     });
-    // console.log({ arrayOfData });
+
     const formattedData = arrayOfData.map(item => ({
       ...item,
       amount: convertAmountToMiliunits(parseFloat(item.amount)),
       date: format(parse(item.date, dateFormat, new Date()), outputFormat)
     }));
-    //console.log({formattedData});
+
     onSubmit(formattedData);
   };
 
@@ -103,9 +103,9 @@ export const ImportCard = ({ data, onCancel, onSubmit }: Props) => {
             </Button>
             <Button
               size="sm"
+              disabled={progress < requiredOptions.length}
               onClick={handleContinue}
               className="w-full lg:w-auto"
-              disabled={progress < requiredOptions.length}
             >
               Continue ({progress} / {requiredOptions.length})
             </Button>
@@ -113,10 +113,10 @@ export const ImportCard = ({ data, onCancel, onSubmit }: Props) => {
         </CardHeader>
         <CardContent>
           <ImportTable
-            headers={headers} //table headers
-            body={body} //the table data
-            selectedColumns={selectedColumns} //some state
-            onTableHeadSelectChange={onTableHeadSelectChange} // a function to change the selected columns based on information coming from the table heade select.
+            headers={headers}
+            body={body}
+            selectedColumns={selectedColumns}
+            onTableHeadSelectChange={onTableHeadSelectChange}
           />
         </CardContent>
       </Card>
