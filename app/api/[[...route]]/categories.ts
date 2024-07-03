@@ -106,7 +106,10 @@ const app = new Hono()
       const data = await db
         .delete(categories)
         .where(
-          and(eq(categories.userId, auth.userId), inArray(categories.id, values.ids))
+          and(
+            eq(categories.userId, auth.userId),
+            inArray(categories.id, values.ids)
+          )
         )
         .returning({
           id: categories.id
