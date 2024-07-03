@@ -23,11 +23,11 @@ const formSchema = insertAccountSchema.pick({
 type FormValues = z.input<typeof formSchema>; //types of values come from db schema.
 
 type Props = {
-  id?: string;
+  id?: string; //this is optional because we will only have an id if an account is present.
   defaultValues?: FormValues;
   onSubmit: (values: FormValues) => void;
-  onDelete?: () => void;
-  disabled?: boolean; //optional delete.
+  onDelete?: () => void; //optional delete.
+  disabled?: boolean;
 };
 
 export const AccountForm = ({
@@ -52,7 +52,10 @@ export const AccountForm = ({
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-4 pt-4">
+      <form
+        onSubmit={form.handleSubmit(handleSubmit)}
+        className="space-y-4 pt-4"
+      >
         <FormField
           name="name"
           control={form.control}
