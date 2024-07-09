@@ -50,7 +50,7 @@ const AccountsPage = () => {
             columns={columns}
             data={accounts}
             onDelete={row => {
-              const ids = row.map(r => r.original.id);
+              const ids = row.map(r => r.original.id); //get the db record ids from the table
               deleteAccounts.mutate({ ids });
             }}
             disabled={isDisabled}
