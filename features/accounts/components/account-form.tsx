@@ -16,9 +16,14 @@ import {
   FormMessage
 } from '@/components/ui/form';
 
-//problem here, in that formSchema is not picking up that there needs to a value. see transaction-form.tsx for clues how to fix.
-const formSchema = insertAccountSchema.pick({
-  name: true
+//DELETE THIS
+// const formSchema = insertAccountSchema.pick({
+//   name: true
+// });
+
+//ADD THIS
+const formSchema = z.object({
+  name: z.string().min(1, { message: 'Account name cannot be empty' })
 });
 
 type FormValues = z.input<typeof formSchema>; //types of values come from db schema.
@@ -71,6 +76,8 @@ export const AccountForm = ({
                   {...field}
                 />
               </FormControl>
+              {/* ADD THIS */}
+              <FormMessage>{form.formState.errors.name?.message}</FormMessage>
             </FormItem>
           )}
         />
