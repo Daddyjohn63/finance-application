@@ -16,6 +16,7 @@ import {
   FormMessage
 } from '@/components/ui/form';
 
+//problem here, in that formSchema is not picking up that there needs to a value. see transaction-form.tsx for clues how to fix.
 const formSchema = insertAccountSchema.pick({
   name: true
 });
