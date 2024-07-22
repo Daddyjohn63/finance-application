@@ -17,13 +17,15 @@ export const useBulkDeleteCategories = () => {
 
   const mutation = useMutation<ResponseType, Error, RequestType>({
     mutationFn: async json => {
-      const response = await client.api.categories['bulk-delete']['$post']({ json });
+      const response = await client.api.categories['bulk-delete']['$post']({
+        json
+      });
       return await response.json();
     },
     onSuccess: () => {
       toast.success('Categories deleted');
       queryClient.invalidateQueries({ queryKey: ['categories'] });
-      // TODO: Also invalidate summary
+      queryClient.invalidateQueries({ queryKey: ['summary'] });
     },
     onError: () => {
       toast.error('Failed to delete categories');

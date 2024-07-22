@@ -17,13 +17,15 @@ export const useBulkDeleteAccounts = () => {
 
   const mutation = useMutation<ResponseType, Error, RequestType>({
     mutationFn: async json => {
-      const response = await client.api.accounts['bulk-delete']['$post']({ json });
+      const response = await client.api.accounts['bulk-delete']['$post']({
+        json
+      });
       return await response.json();
     },
     onSuccess: () => {
       toast.success('Accounts deleted');
       queryClient.invalidateQueries({ queryKey: ['accounts'] }); //make sure we get new data from the server as a new account is been created.
-      // TODO: Also invalidate summary
+      queryClient.invalidateQueries({ queryKey: ['summary'] }); //make sure we get new data from the server as a new account is been created.
     },
     onError: () => {
       toast.error('Failed to delete accounts');
