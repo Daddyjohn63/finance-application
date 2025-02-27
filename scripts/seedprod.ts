@@ -15,7 +15,7 @@ const pool = new Pool({
 
 const db = drizzle(pool);
 
-const SEED_USER_ID = 'user_2gGr8bRYrlAUvPcMY1qfMgqgIrV';
+const SEED_USER_ID = 'user_2tcWB9mGGgKlqYM6fGhrS18b1jh';
 const SEED_CATEGORIES = [
   { id: 'category_1', name: 'Food', userId: SEED_USER_ID, plaidId: null },
   { id: 'category_2', name: 'Rent', userId: SEED_USER_ID, plaidId: null },
